@@ -283,7 +283,7 @@ async function closeChallenge(id, winnerId, winnerUsername) {
  * @returns {Number} the billing account id
  */
 async function getProjectBillingAccountId(id) {
-  const apiKey = await getM2Mtoken();
+  const apiKey = await getAccessToken();
   logger.debug(`Getting project billing detail ${id}`);
   try {
     const response = await axios.get(`${config.TC_API_URL}/projects/${id}`, {
@@ -333,7 +333,7 @@ async function getTopcoderMemberId(handle) {
  * @param {String} roleId the role id
  */
 async function addResourceToChallenge(id, handle, roleId) {
-  const apiKey = await getM2Mtoken();
+  const apiKey = await getAccessToken();
   logger.debug(`adding resource to challenge ${id}`);
   try {
     const response = await axios.post(`${config.TC_API_URL}/resources`, {
@@ -363,7 +363,7 @@ async function addResourceToChallenge(id, handle, roleId) {
  * @returns {Object} topcoder challenge resources
  */
 async function getResourcesFromChallenge(id) {
-  const apiKey = await getM2Mtoken();
+  const apiKey = await getAccessToken();
   logger.debug(`fetch resource from challenge ${id}`);
   try {
     const response = await axios.get(`${config.TC_API_URL}/resources?challengeId=${id}`, {
@@ -456,7 +456,7 @@ async function assignUserAsRegistrant(topcoderUsername, challengeId) {
  * @param {String} roleId the role id of registered user
  */
 async function removeResourceToChallenge(id, handle, roleId) {
-  const apiKey = await getM2Mtoken();
+  const apiKey = await getAccessToken();
   logger.debug(`removing resource from challenge ${id}`);
   try {
     const response = await axios.delete(`${config.TC_API_URL}/resources`, {
